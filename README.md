@@ -1,4 +1,4 @@
-<img width="500" height="500" alt="imprimeailogo" text-align="center" src="https://github.com/user-attachments/assets/bd0cfd92-f329-48fb-a045-5a68db40dcb4" />
+<img width="250" height="250" alt="imprimeailogo"  src="https://github.com/user-attachments/assets/bd0cfd92-f329-48fb-a045-5a68db40dcb4" />
 
 Imprime Aí: Um Sistema de Delivery de Impressões
 
