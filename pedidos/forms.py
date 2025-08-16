@@ -1,14 +1,16 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Documento, Cliente
+from .models import Documento, Cliente, Pedido
 
 class RegistroForm(forms.ModelForm):
+    # Campo para o nome de usuário (que será o telefone)
     username = forms.CharField(max_length=150, required=True, label='Telefone')
     password = forms.CharField(label='Senha', widget=forms.PasswordInput)
+    email = forms.EmailField(label='Email', required=True) # Adicione esta linha
 
     class Meta:
         model = User
-        fields = ['username']
+        fields = ['username', 'email'] # Atualize esta linha com o novo campo
 
 class DocumentoForm(forms.ModelForm):
     # Definindo as opções para o tipo de papel
@@ -46,4 +48,12 @@ class EnderecoForm(forms.ModelForm):
             'endereco': forms.TextInput(attrs={'class': 'form-control'}),
             'cidade': forms.TextInput(attrs={'class': 'form-control'}),
             'cep': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+class PagamentoForm(forms.ModelForm):
+    class Meta:
+        model = Pedido
+        fields = ['metodo_pagamento']
+        widgets = {
+            'metodo_pagamento': forms.RadioSelect(attrs={'class': 'form-check'}),
         }

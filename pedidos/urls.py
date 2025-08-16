@@ -12,5 +12,11 @@ urlpatterns = [
     path('pedido-finalizado/', views.pedido_finalizado, name='pedido_finalizado'),
     path('confirmar-pedido/<int:pedido_id>/', views.confirmar_pedido, name='confirmar_pedido'),
     path('confirmar-endereco/<int:pedido_id>/', views.confirmar_endereco, name='confirmar_endereco'),
-    path('pedido-finalizado/', views.pedido_finalizado, name='pedido_finalizado'),
+    
+    # URLs de redefinição de senha
+    path('password_reset/', auth_views.PasswordResetView.as_view(template_name='password_reset_form.html'), name='password_reset'),
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_confirm.html'), name='password_reset_confirm'),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'), name='password_reset_complete'),
+    path('finalizar-pagamento/<int:pedido_id>/', views.finalizar_pagamento, name='finalizar_pagamento'),
 ]

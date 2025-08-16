@@ -9,6 +9,10 @@ class Cliente(models.Model):
     cidade = models.CharField(max_length=100)
     cep = models.CharField(max_length=10)
 
+    @property
+    def nome_de_exibicao(self):
+        return self.user.email.split('@')[0] if self.user.email else self.user.username
+
     def __str__(self):
         return self.user.username
 
@@ -62,6 +66,7 @@ class Pedido(models.Model):
         ('Cartao de Credito', 'Cartão de Crédito'),
     )
     
+    taxa_entrega_adicionada = models.BooleanField(default=False)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     documentos = models.ManyToManyField(Documento)
     status_pedido = models.CharField(max_length=20, choices=STATUS_PEDIDO_CHOICES, default='Pendente')
